@@ -9,6 +9,9 @@
     "test": "test"
   },
   "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "pretest": "npm run build",
     "test": "ava"
   },
   "devDependencies": {
@@ -29,6 +32,12 @@
   "keywords": [
     "Japanese"
   ],
+  "lint-staged": {
+    "src/**/*.{js}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "author": "Dan Kogai (https://github.com/dankogai)",
   "license": "BSD",
   "sideEffects": false
