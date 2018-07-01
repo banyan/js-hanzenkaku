@@ -8,7 +8,7 @@ import {
   toHalfwidthSpace,
   toKatakana,
   toHiragana,
-} from './src/hanzenkaku';
+} from '../src/hanzenkaku';
 
 test('.toZenkaku', t => {
   t.is(toZenkaku('ｺｶﾞｲﾀﾞﾝ'), 'コガイダン');
