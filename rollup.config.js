@@ -11,15 +11,15 @@ export default [
       name: 'hanzenkaku',
       file: pkg.browser,
       format: 'umd',
-      sourcemap: true
+      sourcemap: true,
     },
     plugins: [
       resolve(), // so Rollup can find `ms`
       babel({
-        exclude: 'node_modules/**' // only transpile our source code
+        exclude: 'node_modules/**', // only transpile our source code
       }),
-      commonjs() // so Rollup can convert `ms` to an ES module
-    ]
+      commonjs(), // so Rollup can convert `ms` to an ES module
+    ],
   },
 
   // CommonJS (for Node) and ES module (for bundlers) build.
@@ -33,7 +33,7 @@ export default [
     external: ['ms'],
     output: [
       { file: pkg.main, format: 'cjs', sourcemap: true },
-      { file: pkg.module, format: 'es', sourcemap: true }
-    ]
-  }
+      { file: pkg.module, format: 'es', sourcemap: true },
+    ],
+  },
 ];
