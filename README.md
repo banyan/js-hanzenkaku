@@ -8,13 +8,8 @@ A Hankaku-Zenkaku translator in JavaScript.
 
 ### FUNCTIONAL INTERFACE
 
-All functions are under the `HanZenKaku` namespace.
+```js
+import { toZenkaku } from 'hanzenkaku';
 
-    HanZenKaku.h2z('ｺｶﾞｲﾀﾞﾝ');            // コガイダン
-    HanZenKaku.z2h('コガイダン');         // ｺｶﾞｲﾀﾞﾝ
-    HanZenKaku.hw2fw('dankogai');         // ｄａｎｋｏｇａｉ
-    HanZenKaku.fw2hw('ｄａｎｋｏｇａｉ'); // dankogai
-    HanZenKaku.fs2hs('dan　kogai');       // dan kogai
-    HanZenKaku.hs2fs('dan kogai');        // dan　kogai
-    HanZenKaku.h2k('こがいだん');         // コガイダン
-    HanZenKaku.k2h('コガイダン');         // こがいだん
+toZenkaku('ｺｶﾞｲﾀﾞﾝ'); // => コガイダン
+```
