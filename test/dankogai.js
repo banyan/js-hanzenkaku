@@ -1,40 +1,43 @@
+import test from 'ava';
+import {
+    toZenkaku,
+    toHankaku,
+    toFullwidth,
+    toHalfwidth,
+    toFullwidthSpace,
+    toHalfwidthSpace,
+    toKatakana,
+    toHiragana,
+} from './src/hanzenkaku';
 
-/*
- * $Id: dankogai.js,v 0.1 2012/08/13 05:30:12 dankogai Exp dankogai $
- *
- * use mocha to test me
- * http://visionmedia.github.com/mocha/
- */
-var assert, HanZenKaku;
-if (this['window'] !== this) {
-    assert = require("assert");
-    HanZenKaku = require('../hanzenkaku.js').HanZenKaku;
-}
-var is = function (a, e, m) {
-    return function () {
-        assert.equal(a, e, m)
-    }
-};
-
-describe('HanZenKaku', function () {
-    it('.z2h', is(HanZenKaku.z2h('コガイダン'), 'ｺｶﾞｲﾀﾞﾝ'));
-    it('.h2z', is(HanZenKaku.h2z('ｺｶﾞｲﾀﾞﾝ'), 'コガイダン'));
-    it('.fw2hw', is(HanZenKaku.fw2hw('ｄａｎｋｏｇａｉ'), 'dankogai'));
-    it('.hw2fw', is(HanZenKaku.hw2fw('dankogai'), 'ｄａｎｋｏｇａｉ'));
-    it('.fs2hs', is(HanZenKaku.fs2hs('dan　kogai'), 'dan kogai'));
-    it('.hs2fs', is(HanZenKaku.hs2fs('dan kogai'), 'dan　kogai'));
-    it('.h2k', is(HanZenKaku.h2k('こがいだん'), 'コガイダン'));
-    it('.k2h', is(HanZenKaku.k2h('コガイダン'), 'こがいだん'));
+test('.toZenkaku', t => {
+    t.is(toZenkaku('ｺｶﾞｲﾀﾞﾝ'), 'コガイダン');
 });
 
-// it seems node.js at travis does not allow string extension :-(
-if ('toZenkaku' in String.prototype) describe('String.prototype', function () {
-    it('.toZenkaku', is('ｺｶﾞｲﾀﾞﾝ'.toZenkaku(), 'コガイダン'));
-    it('.toHankaku', is('コガイダン'.toHankaku(), 'ｺｶﾞｲﾀﾞﾝ'));
-    it('.toFullwidth', is('dankogai'.toFullwidth(), 'ｄａｎｋｏｇａｉ'));
-    it('.toHalfwidth', is('ｄａｎｋｏｇａｉ'.toHalfwidth(), 'dankogai'));
-    it('.toHalfwidthSpace', is('dan　kogai'.toHalfwidthSpace(), 'dan kogai'));
-    it('.toFullwidthSpace', is('dan kogai'.toFullwidthSpace(), 'dan　kogai'));
-    it('.toKatakana', is('こがいだん'.toKatakana(), 'コガイダン'));
-    it('.toHiragana', is('コガイダン'.toHiragana(), 'こがいだん'));
+test('.toHankaku', t => {
+    t.is(toHankaku('コガイダン'), 'ｺｶﾞｲﾀﾞﾝ');
+});
+
+test('.toFullwidth', t => {
+    t.is(toFullwidth('dankogai'), 'ｄａｎｋｏｇａｉ');
+});
+
+test('.toHalfwidth', t => {
+    t.is(toHalfwidth('ｄａｎｋｏｇａｉ'), 'dankogai');
+});
+
+test('.toFullwidthSpace', t => {
+    t.is(toFullwidthSpace('dan kogai'), 'dan　kogai');
+});
+
+test('.toHalfwidthSpace', t => {
+    t.is(toHalfwidthSpace('dan　kogai'), 'dan kogai');
+});
+
+test('.toKatakana', t => {
+    t.is(toKatakana('こがいだん'), 'コガイダン');
+});
+
+test('.toHiragana', t => {
+    t.is(toHiragana('コガイダン'), 'こがいだん');
 });
